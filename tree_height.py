@@ -8,20 +8,38 @@ import numpy
 def compute_height(n, parents):
     # Write this function
     max_height = 0
+    temp = set()
     # Your code here
+    for i in range(n):
+        temp.add(parents[i])
+
+    max_height = len(temp)
     return max_height
 
 
 def main():
     # implement input form keyboard and from files
+    data = ""
+    switch = input("i or F: ")
     
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
-    
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
+    if switch == "F":
+        filename = input("File: ")
+        if filename != "a":
+            f = open(filename, "r")
+            data = f.read()
+            f.close()
+    elif switch == "i":
+        # data = input("Data: ")
+        # input number of elements
+        # input values in one variable, separate with space, split these values in an array
+        n = input("Elements: ")
+        parents = input("Parents: ")
+
     # call the function and output it's result
-    pass
+    print(compute_height(int(n), numpy.fromstring(parents, dtype=int, sep=' ').tolist()))
+    # pass
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
@@ -29,5 +47,5 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-main()
+# main()
 # print(numpy.array([1,2,3]))
