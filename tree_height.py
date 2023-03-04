@@ -32,12 +32,12 @@ def main():
             n = f.readline()
             parents = f.readline()
             f.close()
-    elif "i" in switch:
+    elif "I" in switch:
         # data = input("Data: ")
         # input number of elements
         # input values in one variable, separate with space, split these values in an array
-        n = input("Elements: ")
-        parents = input("Parents: ")
+        n = input()
+        parents = input()
 
     # call the function and output it's result
     print(compute_height(int(n), numpy.fromstring(parents, dtype=int, sep=' ').tolist()))
