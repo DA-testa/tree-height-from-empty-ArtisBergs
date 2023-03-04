@@ -27,8 +27,9 @@ def main():
     if switch == "F":
         filename = input("File: ")
         if filename != "a":
-            f = open(filename, "r")
-            data = f.read()
+            f = open("./test/"+filename, "r")
+            n = f.readline()
+            parents = f.readline()
             f.close()
     elif switch == "i":
         # data = input("Data: ")
