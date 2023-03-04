@@ -19,19 +19,20 @@ def compute_height(n, parents):
 
 def main():
     # implement input form keyboard and from files
-    data = ""
-    switch = input("i or F: ")
+    n = ""
+    parents = ""
+    switch = input()
     
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision
-    if switch == "F":
-        filename = input("File: ")
+    if "F" in switch:
+        filename = input()
         if filename != "a":
             f = open("./test/"+filename, "r")
             n = f.readline()
             parents = f.readline()
             f.close()
-    elif switch == "i":
+    elif "i" in switch:
         # data = input("Data: ")
         # input number of elements
         # input values in one variable, separate with space, split these values in an array
