@@ -5,21 +5,25 @@ import threading
 import numpy
 
 
-def compute_height(n, parents):
-    # Write this function
-    max_height = 0
+def compute_height(n, parents, needle = set({-1}), max_height = set(), count = -1):
+    count += 1
+    max_height.add(count)
     temp = set()
-    # Your code here
-    for i in range(n):
-        temp.add(parents[i])
 
-    max_height = len(temp)
-    return max_height
+    for j in needle:
+        for i in range(n):
+            if parents[i] == j:
+                temp.add(i)
+
+    if len(temp) != 0:
+        compute_height(n, parents, temp, max_height, count)
+
+    return len(max_height)-1
 
 
 def main():
     # implement input form keyboard and from files
-    n = ""
+    n = 0
     parents = ""
     switch = input()
     
