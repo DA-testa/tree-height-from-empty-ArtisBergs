@@ -4,21 +4,28 @@ import sys
 import threading
 import numpy
 
+results = numpy.array([])
 
-def compute_height(n, parents, needle, max_height):
-    temp = numpy.array([])
+def compute_height(n, parents):
+    d = {}
 
-    for j in needle:
-        for i in range(n):
-            if parents[i] == j:
-                temp = numpy.append(temp, i)
+    for i in range(n):
+        if parents[i] in d:
+            d[parents[i]].append(i)
+        else:
+            d[parents[i]] = [i]
+    
+    helper(d, -1, 0)
 
-    if len(temp) != 0:
-        max_height += 1
-        return compute_height(n, parents, temp, max_height)
-    else:
-        return max_height
+def helper(d, needle, counter):
+    if needle in d:
+        
+        counter += 1
+        global results
+        results = numpy.append(results, counter)
 
+        for i in d[needle]:
+            helper(d, i, counter)
 
 def main():
     # implement input from keyboard and from files
@@ -47,8 +54,8 @@ def main():
     int_values = [int(s) for s in substrings]
     np_array = numpy.array(int_values)
     
-    max_height = 0
-    print(compute_height(int(n), np_array, numpy.array([-1]), max_height))
+    compute_height(int(n), np_array)
+    print("%.0d" % (numpy.max(results)))
     # pass
 
 # In Python, the default limit on recursion depth is rather low,
